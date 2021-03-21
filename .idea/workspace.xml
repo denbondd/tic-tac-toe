@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="82d78d3d-82e7-414c-9b89-3b6a23c368be" name="Default Changelist" comment="fixup! making first screen">
-      <change afterPath="$PROJECT_DIR$/assets/bundled.go" afterDir="false" />
-    </list>
-    <list id="603089f7-6428-4703-a195-f2f16613d353" name="making first screen" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui/structs.go" afterDir="false" />
+    <list default="true" id="82d78d3d-82e7-414c-9b89-3b6a23c368be" name="Default Changelist" comment="making first screen">
+      <change afterPath="$PROJECT_DIR$/ui/settings.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/start.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/ui.go" beforeDir="false" afterPath="$PROJECT_DIR$/ui/ui.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/ui.go" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,6 +77,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit" />

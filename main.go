@@ -12,7 +12,7 @@ func main() {
 	w.Resize(fyne.NewSize(768, 512))
 	w.SetFixedSize(true)
 
-	w.SetContent(ui.GetContent())
+	w.SetContent(ui.GetStartContent(w))
 
 	w.ShowAndRun()
 }
