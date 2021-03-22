@@ -26,7 +26,7 @@ func GetStartContent(w fyne.Window) (c *fyne.Container) {
 
 func getSettingsBtn(w fyne.Window) fyne.CanvasObject {
 	s := newCustomIcon(assets.SettingsIco, fyne.NewSize(48, 48), func() {
-		w.SetContent(GetSettingsContent())
+		w.SetContent(GetSettingsContent(w))
 	})
 	return s
 }
