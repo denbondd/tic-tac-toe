@@ -7,11 +7,11 @@ import (
 
 type customIcon struct {
 	widget.Icon
-	Function func()
+	Function func(ci *customIcon)
 	size     fyne.Size
 }
 
-func newCustomIcon(resource *fyne.StaticResource, size fyne.Size, function func()) *customIcon {
+func newCustomIcon(resource fyne.Resource, size fyne.Size, function func(ci *customIcon)) *customIcon {
 	ci := &customIcon{
 		Function: function,
 		size:     size,
@@ -21,8 +21,17 @@ func newCustomIcon(resource *fyne.StaticResource, size fyne.Size, function func(
 	return ci
 }
 
+func newCustomIconWithoutFunc(resource fyne.Resource, size fyne.Size) *customIcon {
+	ci := &customIcon{
+		size: size,
+	}
+	ci.SetResource(resource)
+	ci.ExtendBaseWidget(ci)
+	return ci
+}
+
 func (ci *customIcon) Tapped(_ *fyne.PointEvent) {
-	ci.Function()
+	ci.Function(ci)
 }
 
 func (ci *customIcon) MinSize() fyne.Size {

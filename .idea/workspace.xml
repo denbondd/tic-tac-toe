@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="82d78d3d-82e7-414c-9b89-3b6a23c368be" name="Default Changelist" comment="start making settings screen">
+    <list default="true" id="82d78d3d-82e7-414c-9b89-3b6a23c368be" name="Default Changelist" comment="finish settings ui">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/game.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/settings.go" beforeDir="false" afterPath="$PROJECT_DIR$/ui/settings.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/bundled.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/settings.svg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/start.go" beforeDir="false" afterPath="$PROJECT_DIR$/ui/start.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/structs.go" beforeDir="false" afterPath="$PROJECT_DIR$/ui/structs.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,6 +89,7 @@
     <MESSAGE value="initial commit" />
     <MESSAGE value="making first screen" />
     <MESSAGE value="start making settings screen" />
-    <option name="LAST_COMMIT_MESSAGE" value="start making settings screen" />
+    <MESSAGE value="finish settings ui" />
+    <option name="LAST_COMMIT_MESSAGE" value="finish settings ui" />
   </component>
 </project>

@@ -1,12 +1,12 @@
 package ui
 
 import (
-	"../assets"
 	"../util"
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/canvas"
 	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/layout"
+	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
 	"image/color"
 	"net/url"
@@ -18,22 +18,22 @@ func GetStartContent(w fyne.Window) (c *fyne.Container) {
 		container.NewHBox(getSettingsBtn(w)),
 		getStartTitle(),
 		layout.NewSpacer(),
-		getPlayButton(),
+		getPlayButton(w),
 		layout.NewSpacer(),
 		getAppInfo())
 	return
 }
 
 func getSettingsBtn(w fyne.Window) fyne.CanvasObject {
-	s := newCustomIcon(assets.SettingsIco, fyne.NewSize(48, 48), func() {
+	s := newCustomIcon(theme.SettingsIcon(), fyne.NewSize(48, 48), func(ci *customIcon) {
 		w.SetContent(GetSettingsContent(w))
 	})
 	return s
 }
 
-func getPlayButton() fyne.CanvasObject {
+func getPlayButton(w fyne.Window) fyne.CanvasObject {
 	playButton := widget.NewButton("", func() {
-		println("play")
+		w.SetContent(getGameContent(w, 3))
 	})
 	text := canvas.NewText("Play", color.Black)
 	text.TextSize = 36

@@ -1,0 +1,6 @@
+# GoLand files
+/.idea/
+
+#build files
+*.exe
+*.exe~
