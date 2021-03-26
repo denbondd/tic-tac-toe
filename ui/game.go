@@ -8,24 +8,23 @@ import (
 	"fyne.io/fyne/v2/layout"
 	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
-	"image/color"
 )
 
 var thisGame *game
 
-func getGameContent(w fyne.Window, size int) (c *fyne.Container) {
+func getGameContent(a fyne.App, w fyne.Window, size int) (c *fyne.Container) {
 	thisGame = &game{btns: make([]*customIcon, size*size)}
 	c = container.New(layout.NewVBoxLayout(),
 		getTurnText(),
 		layout.NewSpacer(),
 		getMainGame(size),
 		layout.NewSpacer(),
-		getExitBtn(w))
+		getExitBtn(a, w))
 	return
 }
 
 func getTurnText() fyne.CanvasObject {
-	t := canvas.NewText("Player1's turn", color.Black)
+	t := canvas.NewText("Player1's turn", textColor)
 	thisGame.turnText = t
 	thisGame.turnText.TextSize = 32
 	c := container.NewCenter(t)
@@ -60,7 +59,7 @@ func getPlayerContent() *fyne.Container {
 	btn := widget.NewButton("Save name", func() {
 
 	})
-	score := canvas.NewText("0", color.Black)
+	score := canvas.NewText("0", textColor)
 	scoreC := container.NewCenter(score)
 	c := container.New(layout.NewVBoxLayout(),
 		icn,
@@ -70,11 +69,11 @@ func getPlayerContent() *fyne.Container {
 	return c
 }
 
-func getExitBtn(w fyne.Window) *fyne.Container {
+func getExitBtn(a fyne.App, w fyne.Window) *fyne.Container {
 	btn := widget.NewButton("Exit", func() {
 		dialog.ShowConfirm("Exit", "Are you sure you want to exit?", func(b bool) {
 			if b {
-				w.SetContent(GetStartContent(w))
+				w.SetContent(GetStartContent(a, w))
 			}
 		}, w)
 	})

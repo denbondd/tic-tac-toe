@@ -12,37 +12,40 @@ import (
 	"net/url"
 )
 
-func GetStartContent(w fyne.Window) (c *fyne.Container) {
+var textColor color.Color
+
+func GetStartContent(a fyne.App, w fyne.Window) (c *fyne.Container) {
+	textColor = theme.ForegroundColor()
 	c = container.New(
 		layout.NewVBoxLayout(),
-		container.NewHBox(getSettingsBtn(w)),
+		container.NewHBox(getSettingsBtn(a, w)),
 		getStartTitle(),
 		layout.NewSpacer(),
-		getPlayButton(w),
+		getPlayButton(a, w),
 		layout.NewSpacer(),
 		getAppInfo())
 	return
 }
 
-func getSettingsBtn(w fyne.Window) fyne.CanvasObject {
+func getSettingsBtn(a fyne.App, w fyne.Window) fyne.CanvasObject {
 	s := newCustomIcon(theme.SettingsIcon(), fyne.NewSize(48, 48), func(ci *customIcon) {
-		w.SetContent(GetSettingsContent(w))
+		w.SetContent(GetSettingsContent(a, w))
 	})
 	return s
 }
 
-func getPlayButton(w fyne.Window) fyne.CanvasObject {
+func getPlayButton(a fyne.App, w fyne.Window) fyne.CanvasObject {
 	playButton := widget.NewButton("", func() {
-		w.SetContent(getGameContent(w, 3))
+		w.SetContent(getGameContent(a, w, 3))
 	})
-	text := canvas.NewText("Play", color.Black)
+	text := canvas.NewText("Play", textColor)
 	text.TextSize = 36
 	text.TextStyle = fyne.TextStyle{Bold: true, Italic: true}
 	return container.NewMax(playButton, container.NewCenter(text))
 }
 
 func getStartTitle() fyne.CanvasObject {
-	t := canvas.NewText("Tic-Tac-Toe", color.Black)
+	t := canvas.NewText("Tic-Tac-Toe", textColor)
 	t.TextStyle = fyne.TextStyle{Italic: true, Bold: true}
 	t.TextSize = 64
 	return container.NewCenter(t)

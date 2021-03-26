@@ -1,58 +1,81 @@
 package ui
 
 import (
+	"errors"
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/canvas"
 	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/layout"
+	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
-	"image/color"
 )
 
-func GetSettingsContent(w fyne.Window) (c *fyne.Container) {
+var languages = []string{"English", "Russian", "Ukrainian"}
+var currentFields *fields
+
+func GetSettingsContent(a fyne.App, w fyne.Window) (c *fyne.Container) {
+	currentFields = new(fields)
+	themeIsDark := textColor == a.Settings().Theme().Color("foreground", 0)
 	c = container.New(
 		layout.NewVBoxLayout(),
 		container.NewHBox(getSettingsTitle()),
 		layout.NewSpacer(),
-		getSettingsList(),
+		getSettingsList(themeIsDark),
 		layout.NewSpacer(),
-		getCanSaveBtns(w))
+		getCanSaveBtns(themeIsDark, a, w))
 	return
 }
 
 func getSettingsTitle() fyne.CanvasObject {
-	t := canvas.NewText("Settings", color.Black)
+	t := canvas.NewText("Settings", textColor)
 	t.TextSize = 32
 	return t
 }
 
-func getSettingsList() fyne.CanvasObject {
+func getSettingsList(themeIsDark bool) fyne.CanvasObject {
 	dt := widget.NewCheck("Dark Theme", func(b bool) {
-		println("darktheme", b)
+		currentFields.dark = b
 	})
-	langTitle := canvas.NewText("Language", color.Black)
-	langSelect := widget.NewSelect([]string{"English", "Russian", "Ukrainian"}, func(s string) {
-		println("lang", s)
+	dt.Checked = themeIsDark
+
+	langTitle := canvas.NewText("Language", textColor)
+	langSelect := widget.NewSelect(languages, func(s string) {
+		for idx, elem := range languages {
+			if elem == s {
+				currentFields.language = idx
+				return
+			}
+		}
+		panic(errors.New("no such language"))
 	})
-	langSelect.Selected = "English"
+	langSelect.Selected = languages[0]
 	lang := container.New(layout.NewHBoxLayout(), langTitle, langSelect)
-	setList := container.NewVBox(
-		dt,
-		lang)
+
+	setList := container.NewVBox(dt, lang)
 	return setList
 }
 
-func getCanSaveBtns(w fyne.Window) fyne.CanvasObject {
+func getCanSaveBtns(themeIsDark bool, a fyne.App, w fyne.Window) fyne.CanvasObject {
 	cancelBtn := widget.NewButton("Cancel", func() {
-		w.SetContent(GetStartContent(w))
+		w.SetContent(GetStartContent(a, w))
 	})
 	saveBtn := widget.NewButton("Save", func() {
-		println("save")
+		if currentFields.dark && !themeIsDark {
+			a.Settings().SetTheme(theme.DarkTheme())
+		} else if !currentFields.dark && themeIsDark {
+			a.Settings().SetTheme(theme.LightTheme())
+		}
+		//TODO add language change
+		w.SetContent(GetStartContent(a, w))
 	})
-	btns := container.New(
-		layout.NewHBoxLayout(),
+	btns := container.New(layout.NewHBoxLayout(),
 		layout.NewSpacer(),
 		cancelBtn,
 		saveBtn)
 	return btns
+}
+
+type fields struct {
+	dark     bool
+	language int
 }
