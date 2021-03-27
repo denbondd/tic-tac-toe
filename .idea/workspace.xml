@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="82d78d3d-82e7-414c-9b89-3b6a23c368be" name="Default Changelist" comment="finish game ui">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/gameUi.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/game.go" beforeDir="false" afterPath="$PROJECT_DIR$/ui/game.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/settings.go" beforeDir="false" afterPath="$PROJECT_DIR$/ui/settings.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/start.go" beforeDir="false" afterPath="$PROJECT_DIR$/ui/start.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/structs.go" beforeDir="false" afterPath="$PROJECT_DIR$/ui/structs.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,6 +97,7 @@
     <MESSAGE value="start making settings screen" />
     <MESSAGE value="finish settings ui" />
     <MESSAGE value="finish game ui" />
-    <option name="LAST_COMMIT_MESSAGE" value="finish game ui" />
+    <MESSAGE value="finish theme setting" />
+    <option name="LAST_COMMIT_MESSAGE" value="finish theme setting" />
   </component>
 </project>

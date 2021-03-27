@@ -1,89 +1,58 @@
 package ui
 
 import (
-	"fyne.io/fyne/v2"
-	"fyne.io/fyne/v2/canvas"
-	"fyne.io/fyne/v2/container"
-	"fyne.io/fyne/v2/dialog"
-	"fyne.io/fyne/v2/layout"
+	"fmt"
 	"fyne.io/fyne/v2/theme"
-	"fyne.io/fyne/v2/widget"
 )
 
 var thisGame *game
 
-func getGameContent(a fyne.App, w fyne.Window, size int) (c *fyne.Container) {
-	thisGame = &game{btns: make([]*customIcon, size*size)}
-	c = container.New(layout.NewVBoxLayout(),
-		getTurnText(),
-		layout.NewSpacer(),
-		getMainGame(size),
-		layout.NewSpacer(),
-		getExitBtn(a, w))
-	return
-}
-
-func getTurnText() fyne.CanvasObject {
-	t := canvas.NewText("Player1's turn", textColor)
-	thisGame.turnText = t
-	thisGame.turnText.TextSize = 32
-	c := container.NewCenter(t)
-	return c
-}
-
-func getMainGame(size int) *fyne.Container {
-	c := container.New(layout.NewGridLayoutWithColumns(3),
-		getPlayerContent(),
-		getGameGrid(size),
-		getPlayerContent())
-	c = container.NewCenter(c)
-	return c
-}
-
-func getGameGrid(size int) *fyne.Container {
-	g := container.NewGridWithColumns(size)
-	for i := 0; i < size*size; i++ {
-		btn := newCustomIcon(theme.CheckButtonIcon(), fyne.NewSize(72, 72), func(ci *customIcon) {
-			ci.SetResource(theme.CancelIcon())
-		})
-		thisGame.btns[i] = btn
-		g.Add(btn)
+func gridClick(ci *customIcon, h, w int) {
+	if ci.Resource != theme.ViewFullScreenIcon() {
+		return
 	}
-	return g
+	var turnInt int
+	if thisGame.turn {
+		turnInt = 1
+	}
+
+	if thisGame.turn {
+		ci.SetResource(theme.CancelIcon())
+	} else {
+		ci.SetResource(theme.RadioButtonIcon())
+	}
+
+	thisGame.players[turnInt].grid[h][w] = true
+	if checkGrid(thisGame.players[turnInt].grid) {
+
+	}
+
+	thisGame.turn = !thisGame.turn
+	changeTurnText(thisGame.turn)
 }
 
-func getPlayerContent() *fyne.Container {
-	icn := newCustomIconWithoutFunc(theme.CancelIcon(), fyne.NewSize(64, 64))
-	et := widget.NewEntry()
-	et.Text = "Player1"
-	btn := widget.NewButton("Save name", func() {
-
-	})
-	score := canvas.NewText("0", textColor)
-	scoreC := container.NewCenter(score)
-	c := container.New(layout.NewVBoxLayout(),
-		icn,
-		et,
-		btn,
-		scoreC)
-	return c
+func checkGrid(grid [][]bool) bool {
+	return false
 }
 
-func getExitBtn(a fyne.App, w fyne.Window) *fyne.Container {
-	btn := widget.NewButton("Exit", func() {
-		dialog.ShowConfirm("Exit", "Are you sure you want to exit?", func(b bool) {
-			if b {
-				w.SetContent(GetStartContent(a, w))
-			}
-		}, w)
-	})
-	c := container.NewCenter(btn)
-	return c
+func changeTurnText(turn bool) {
+	text := ""
+	if turn {
+		text = thisGame.players[0].name + "'s"
+	} else {
+		text = thisGame.players[1].name + "'s"
+	}
+	thisGame.turnText.Text = text + " turn"
+	thisGame.turnText.Refresh()
 }
 
-type game struct {
-	btns    []*customIcon
-	players [2]string
-
-	turnText *canvas.Text
+func newEmptyPlayer(num, size int) *player {
+	p := &player{
+		name: fmt.Sprintf("Player%d", num),
+		grid: make([][]bool, size),
+	}
+	for idx := range p.grid {
+		p.grid[idx] = make([]bool, size)
+	}
+	return p
 }

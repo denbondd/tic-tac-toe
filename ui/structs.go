@@ -2,8 +2,27 @@ package ui
 
 import (
 	"fyne.io/fyne/v2"
+	"fyne.io/fyne/v2/canvas"
 	"fyne.io/fyne/v2/widget"
 )
+
+type game struct {
+	btns    [][]*customIcon
+	players [2]*player
+	turn    bool
+
+	turnText *canvas.Text
+}
+
+type player struct {
+	name string
+	grid [][]bool
+}
+
+type fields struct {
+	dark     bool
+	language int
+}
 
 type customIcon struct {
 	widget.Icon

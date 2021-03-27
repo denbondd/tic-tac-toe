@@ -14,8 +14,10 @@ var languages = []string{"English", "Russian", "Ukrainian"}
 var currentFields *fields
 
 func GetSettingsContent(a fyne.App, w fyne.Window) (c *fyne.Container) {
-	currentFields = new(fields)
 	themeIsDark := textColor == a.Settings().Theme().Color("foreground", 0)
+	currentFields = &fields{
+		dark: themeIsDark,
+	}
 	c = container.New(
 		layout.NewVBoxLayout(),
 		container.NewHBox(getSettingsTitle()),
@@ -73,9 +75,4 @@ func getCanSaveBtns(themeIsDark bool, a fyne.App, w fyne.Window) fyne.CanvasObje
 		cancelBtn,
 		saveBtn)
 	return btns
-}
-
-type fields struct {
-	dark     bool
-	language int
 }
