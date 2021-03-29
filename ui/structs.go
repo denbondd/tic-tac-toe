@@ -4,6 +4,7 @@ import (
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/canvas"
 	"fyne.io/fyne/v2/widget"
+	"strconv"
 )
 
 type game struct {
@@ -17,6 +18,15 @@ type game struct {
 type player struct {
 	name string
 	grid [][]bool
+	wins int
+
+	winsText *canvas.Text
+}
+
+func (pl *player) Win() {
+	pl.wins++
+	pl.winsText.Text = strconv.Itoa(pl.wins)
+	pl.winsText.Refresh()
 }
 
 type fields struct {
@@ -26,14 +36,16 @@ type fields struct {
 
 type customIcon struct {
 	widget.Icon
-	Function func(ci *customIcon)
-	size     fyne.Size
+	Function  func(ci *customIcon)
+	size      fyne.Size
+	clickable bool
 }
 
 func newCustomIcon(resource fyne.Resource, size fyne.Size, function func(ci *customIcon)) *customIcon {
 	ci := &customIcon{
-		Function: function,
-		size:     size,
+		Function:  function,
+		size:      size,
+		clickable: true,
 	}
 	ci.SetResource(resource)
 	ci.ExtendBaseWidget(ci)
@@ -42,7 +54,8 @@ func newCustomIcon(resource fyne.Resource, size fyne.Size, function func(ci *cus
 
 func newCustomIconWithoutFunc(resource fyne.Resource, size fyne.Size) *customIcon {
 	ci := &customIcon{
-		size: size,
+		size:      size,
+		clickable: true,
 	}
 	ci.SetResource(resource)
 	ci.ExtendBaseWidget(ci)
@@ -50,6 +63,9 @@ func newCustomIconWithoutFunc(resource fyne.Resource, size fyne.Size) *customIco
 }
 
 func (ci *customIcon) Tapped(_ *fyne.PointEvent) {
+	if !ci.clickable {
+		return
+	}
 	ci.Function(ci)
 }
 

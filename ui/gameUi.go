@@ -11,7 +11,14 @@ import (
 	"strconv"
 )
 
+var xRes fyne.Resource
+var oRes fyne.Resource
+var emptyRes fyne.Resource
+
 func getGameContent(a fyne.App, w fyne.Window, size int) (c *fyne.Container) {
+	xRes = theme.CancelIcon()
+	oRes = theme.RadioButtonIcon()
+	emptyRes = theme.ViewFullScreenIcon()
 	thisGame = &game{
 		turn:    true,
 		btns:    make([][]*customIcon, size),
@@ -24,7 +31,7 @@ func getGameContent(a fyne.App, w fyne.Window, size int) (c *fyne.Container) {
 	c = container.New(layout.NewVBoxLayout(),
 		getTurnText(),
 		layout.NewSpacer(),
-		getMainGame(size),
+		getMainGame(size, w),
 		layout.NewSpacer(),
 		getExitBtn(a, w))
 	return
@@ -38,28 +45,34 @@ func getTurnText() fyne.CanvasObject {
 	return c
 }
 
-func getMainGame(size int) *fyne.Container {
+func getMainGame(size int, w fyne.Window) *fyne.Container {
 	c := container.New(layout.NewGridLayoutWithColumns(3),
 		getPlayerContent(0),
-		getGameGrid(size),
+		getGameGrid(size, w),
 		getPlayerContent(1))
 	c = container.NewCenter(c)
 	return c
 }
 
-func getGameGrid(size int) *fyne.Container {
+func getGameGrid(size int, w fyne.Window) *fyne.Container {
 	g := container.NewGridWithColumns(size)
 	for i := 0; i < size; i++ {
 		for j := 0; j < size; j++ {
-			g.Add(newGameBtn(i, j))
+			g.Add(newGameBtn(i, j, w))
 		}
 	}
 	return g
 }
 
-func newGameBtn(h, w int) *customIcon {
-	btn := newCustomIcon(theme.ViewFullScreenIcon(), fyne.NewSize(72, 72), func(ci *customIcon) {
-		gridClick(ci, h, w)
+func newGameBtn(h, w int, wind fyne.Window) *customIcon {
+	btn := newCustomIcon(emptyRes, fyne.NewSize(72, 72), func(ci *customIcon) {
+		gridClick(ci, h, w, func(playerNum int) {
+			//winPlayer := thisGame.players[playerNum]
+			message := thisGame.players[playerNum].name + " win!"
+			dialog.ShowInformation("Congratulations", message, wind)
+			thisGame.players[playerNum].Win()
+			unclickableBtns()
+		})
 	})
 	thisGame.btns[h][w] = btn
 	return btn
@@ -80,6 +93,7 @@ func getPlayerContent(plNum int) *fyne.Container {
 		changeTurnText(thisGame.turn)
 	})
 	score := canvas.NewText("0", textColor)
+	thisGame.players[plNum].winsText = score
 	scoreC := container.NewCenter(score)
 	c := container.New(layout.NewVBoxLayout(),
 		icn,
@@ -90,13 +104,17 @@ func getPlayerContent(plNum int) *fyne.Container {
 }
 
 func getExitBtn(a fyne.App, w fyne.Window) *fyne.Container {
-	btn := widget.NewButton("Exit", func() {
+	restartBtn := widget.NewButton("Restart", func() {
+		restartGame()
+	})
+	exitBtn := widget.NewButton("Exit", func() {
 		dialog.ShowConfirm("Exit", "Are you sure you want to exit?", func(b bool) {
 			if b {
 				w.SetContent(GetStartContent(a, w))
 			}
 		}, w)
 	})
-	c := container.NewCenter(btn)
-	return c
+	c := container.NewHBox(restartBtn, exitBtn)
+	cCenter := container.NewCenter(c)
+	return cCenter
 }
