@@ -66,13 +66,21 @@ func getGameGrid(size int, w fyne.Window) *fyne.Container {
 
 func newGameBtn(h, w int, wind fyne.Window) *customIcon {
 	btn := newCustomIcon(emptyRes, fyne.NewSize(72, 72), func(ci *customIcon) {
-		gridClick(ci, h, w, func(playerNum int) {
-			//winPlayer := thisGame.players[playerNum]
-			message := thisGame.players[playerNum].name + " win!"
-			dialog.ShowInformation("Congratulations", message, wind)
-			thisGame.players[playerNum].Win()
-			unclickableBtns()
-		})
+		gridClick(
+			ci, h, w,
+			func(playerNum int) {
+				message := thisGame.players[playerNum].name + " win!"
+				dialog.ShowInformation("Congratulations", message, wind)
+				thisGame.players[playerNum].Win()
+				unclickableBtns()
+			},
+			func() {
+				dialog.ShowConfirm("Block!", "No one wins, restart?", func(b bool) {
+					if b {
+						restartGame()
+					}
+				}, wind)
+			})
 	})
 	thisGame.btns[h][w] = btn
 	return btn

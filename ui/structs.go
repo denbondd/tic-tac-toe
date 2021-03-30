@@ -63,6 +63,9 @@ func newCustomIconWithoutFunc(resource fyne.Resource, size fyne.Size) *customIco
 }
 
 func (ci *customIcon) Tapped(_ *fyne.PointEvent) {
+	if ci.Function == nil {
+		return
+	}
 	if !ci.clickable {
 		return
 	}

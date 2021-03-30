@@ -7,7 +7,7 @@ import (
 
 var thisGame *game
 
-func gridClick(ci *customIcon, h, w int, onWin func(playerNum int)) {
+func gridClick(ci *customIcon, h, w int, onWin func(playerNum int), onBlock func()) {
 	if ci.Resource != theme.ViewFullScreenIcon() {
 		return
 	}
@@ -30,17 +30,14 @@ func gridClick(ci *customIcon, h, w int, onWin func(playerNum int)) {
 			turnInt = 1
 		}
 		onWin(turnInt)
+	} else if checkBlock(thisGame.players[0].grid, thisGame.players[1].grid) {
+		onBlock()
 	}
-
 	thisGame.turn = !thisGame.turn
 	changeTurnText(thisGame.turn)
 }
 
 func checkGrid(grid [][]bool) bool {
-	//for i := 0; i < len(grid); i++ {
-	//	for j := range grid[i] {
-	//	}
-	//}
 	answ := grid[0][0] && grid[1][0] && grid[2][0] ||
 		grid[0][1] && grid[1][1] && grid[2][1] ||
 		grid[0][2] && grid[1][2] && grid[2][2] ||
@@ -50,6 +47,31 @@ func checkGrid(grid [][]bool) bool {
 		grid[0][0] && grid[1][1] && grid[2][2] ||
 		grid[0][2] && grid[1][1] && grid[2][0]
 	return answ
+}
+
+func checkBlock(pl1, pl2 [][]bool) bool {
+	block := make([][]bool, len(pl1))
+	for i := range block {
+		block[i] = make([]bool, len(pl1[0]))
+	}
+	for i, sl := range pl1 {
+		for j, elem := range sl {
+			if elem {
+				block[i][j] = elem
+			}
+			if pl2[i][j] {
+				block[i][j] = pl2[i][j]
+			}
+		}
+	}
+	for _, sl := range block {
+		for _, elem := range sl {
+			if !elem {
+				return false
+			}
+		}
+	}
+	return true
 }
 
 func changeTurnText(turn bool) {

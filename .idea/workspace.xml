@@ -5,7 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/game.go" beforeDir="false" afterPath="$PROJECT_DIR$/ui/game.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/gameUi.go" beforeDir="false" afterPath="$PROJECT_DIR$/ui/gameUi.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/structs.go" beforeDir="false" afterPath="$PROJECT_DIR$/ui/structs.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,6 +97,7 @@
     <MESSAGE value="finish game ui" />
     <MESSAGE value="finish theme setting" />
     <MESSAGE value="Start making game logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="Start making game logic" />
+    <MESSAGE value="finish basic game logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="finish basic game logic" />
   </component>
 </project>
