@@ -7,10 +7,11 @@ import (
 
 var thisGame *game
 
-func gridClick(ci *customIcon, h, w int, onWin func(playerNum int), onBlock func()) {
+func gridClick(ci *customIcon, h, w int, onWin func(), onBlock func()) {
 	if ci.Resource != theme.ViewFullScreenIcon() {
 		return
 	}
+
 	var turnInt int
 	if thisGame.turn {
 		turnInt = 1
@@ -23,13 +24,8 @@ func gridClick(ci *customIcon, h, w int, onWin func(playerNum int), onBlock func
 	}
 
 	thisGame.players[turnInt].grid[h][w] = true
-	if checkGrid(thisGame.players[turnInt].grid) {
-		if thisGame.turn {
-			turnInt = 0
-		} else {
-			turnInt = 1
-		}
-		onWin(turnInt)
+	if checkWin(thisGame.players[turnInt].grid) {
+		onWin()
 	} else if checkBlock(thisGame.players[0].grid, thisGame.players[1].grid) {
 		onBlock()
 	}
@@ -37,7 +33,7 @@ func gridClick(ci *customIcon, h, w int, onWin func(playerNum int), onBlock func
 	changeTurnText(thisGame.turn)
 }
 
-func checkGrid(grid [][]bool) bool {
+func checkWin(grid [][]bool) bool {
 	answ := grid[0][0] && grid[1][0] && grid[2][0] ||
 		grid[0][1] && grid[1][1] && grid[2][1] ||
 		grid[0][2] && grid[1][2] && grid[2][2] ||
@@ -57,10 +53,10 @@ func checkBlock(pl1, pl2 [][]bool) bool {
 	for i, sl := range pl1 {
 		for j, elem := range sl {
 			if elem {
-				block[i][j] = elem
+				block[i][j] = true
 			}
 			if pl2[i][j] {
-				block[i][j] = pl2[i][j]
+				block[i][j] = true
 			}
 		}
 	}
@@ -104,8 +100,8 @@ func restartGame() {
 			elem.clickable = true
 		}
 	}
-	thisGame.players[0].grid = cleanSlice(thisGame.players[0].grid)
-	thisGame.players[1].grid = cleanSlice(thisGame.players[1].grid)
+	thisGame.players[0].grid = cleanBoolSlice(thisGame.players[0].grid)
+	thisGame.players[1].grid = cleanBoolSlice(thisGame.players[1].grid)
 }
 
 func unclickableBtns() {
@@ -116,7 +112,7 @@ func unclickableBtns() {
 	}
 }
 
-func cleanSlice(grid [][]bool) [][]bool {
+func cleanBoolSlice(grid [][]bool) [][]bool {
 	answ := make([][]bool, len(grid))
 	for idx := range answ {
 		answ[idx] = make([]bool, len(grid[0]))

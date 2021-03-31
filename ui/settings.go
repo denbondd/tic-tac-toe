@@ -13,8 +13,8 @@ import (
 var languages = []string{"English", "Russian", "Ukrainian"}
 var currentFields *fields
 
-func GetSettingsContent(a fyne.App, w fyne.Window) (c *fyne.Container) {
-	themeIsDark := textColor == a.Settings().Theme().Color("foreground", 0)
+func getSettingsContent() (c *fyne.Container) {
+	themeIsDark := textColor == currApp.Settings().Theme().Color("foreground", 0)
 	currentFields = &fields{
 		dark: themeIsDark,
 	}
@@ -24,7 +24,7 @@ func GetSettingsContent(a fyne.App, w fyne.Window) (c *fyne.Container) {
 		layout.NewSpacer(),
 		getSettingsList(themeIsDark),
 		layout.NewSpacer(),
-		getCanSaveBtns(themeIsDark, a, w))
+		getCanSaveBtns(themeIsDark))
 	return
 }
 
@@ -57,18 +57,18 @@ func getSettingsList(themeIsDark bool) fyne.CanvasObject {
 	return setList
 }
 
-func getCanSaveBtns(themeIsDark bool, a fyne.App, w fyne.Window) fyne.CanvasObject {
+func getCanSaveBtns(themeIsDark bool) fyne.CanvasObject {
 	cancelBtn := widget.NewButton("Cancel", func() {
-		w.SetContent(GetStartContent(a, w))
+		currWindow.SetContent(GetStartContent())
 	})
 	saveBtn := widget.NewButton("Save", func() {
 		if currentFields.dark && !themeIsDark {
-			a.Settings().SetTheme(theme.DarkTheme())
+			currApp.Settings().SetTheme(theme.DarkTheme())
 		} else if !currentFields.dark && themeIsDark {
-			a.Settings().SetTheme(theme.LightTheme())
+			currApp.Settings().SetTheme(theme.LightTheme())
 		}
 		//TODO add language change
-		w.SetContent(GetStartContent(a, w))
+		currWindow.SetContent(GetStartContent())
 	})
 	btns := container.New(layout.NewHBoxLayout(),
 		layout.NewSpacer(),

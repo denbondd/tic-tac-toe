@@ -52,21 +52,8 @@ func newCustomIcon(resource fyne.Resource, size fyne.Size, function func(ci *cus
 	return ci
 }
 
-func newCustomIconWithoutFunc(resource fyne.Resource, size fyne.Size) *customIcon {
-	ci := &customIcon{
-		size:      size,
-		clickable: true,
-	}
-	ci.SetResource(resource)
-	ci.ExtendBaseWidget(ci)
-	return ci
-}
-
 func (ci *customIcon) Tapped(_ *fyne.PointEvent) {
-	if ci.Function == nil {
-		return
-	}
-	if !ci.clickable {
+	if ci.Function == nil || !ci.clickable {
 		return
 	}
 	ci.Function(ci)

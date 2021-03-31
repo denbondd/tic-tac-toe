@@ -13,30 +13,37 @@ import (
 )
 
 var textColor color.Color
+var currApp fyne.App
+var currWindow fyne.Window
 
-func GetStartContent(a fyne.App, w fyne.Window) (c *fyne.Container) {
+func SetContentFields(w fyne.Window) {
+	currWindow = w
+	currApp = fyne.CurrentApp()
+}
+
+func GetStartContent() (c *fyne.Container) {
 	textColor = theme.ForegroundColor()
 	c = container.New(
 		layout.NewVBoxLayout(),
-		container.NewHBox(getSettingsBtn(a, w)),
+		container.NewHBox(getSettingsBtn()),
 		getStartTitle(),
 		layout.NewSpacer(),
-		getPlayButton(a, w),
+		getPlayButton(),
 		layout.NewSpacer(),
 		getAppInfo())
 	return
 }
 
-func getSettingsBtn(a fyne.App, w fyne.Window) fyne.CanvasObject {
+func getSettingsBtn() fyne.CanvasObject {
 	s := newCustomIcon(theme.SettingsIcon(), fyne.NewSize(48, 48), func(ci *customIcon) {
-		w.SetContent(GetSettingsContent(a, w))
+		currWindow.SetContent(getSettingsContent())
 	})
 	return s
 }
 
-func getPlayButton(a fyne.App, w fyne.Window) fyne.CanvasObject {
+func getPlayButton() fyne.CanvasObject {
 	playButton := widget.NewButton("", func() {
-		w.SetContent(getGameContent(a, w, 3))
+		currWindow.SetContent(getGameContent(3))
 	})
 	text := canvas.NewText("Play", textColor)
 	text.TextSize = 36
