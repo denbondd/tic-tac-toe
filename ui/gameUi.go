@@ -1,6 +1,7 @@
 package ui
 
 import (
+	"fmt"
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/canvas"
 	"fyne.io/fyne/v2/container"
@@ -39,7 +40,7 @@ func getGameContent(size int) (c *fyne.Container) {
 }
 
 func getTurnText() fyne.CanvasObject {
-	t := canvas.NewText("Player1's turn", textColor)
+	t := canvas.NewText("Player1's "+lang.Turn(), textColor)
 	t.TextSize = 32
 	thisGame.turnText = t
 	c := container.NewCenter(t)
@@ -78,14 +79,14 @@ func onWin() {
 	if !thisGame.turn {
 		turnInt = 1
 	}
-	message := thisGame.players[turnInt].name + " win!"
-	dialog.ShowInformation("Congratulations", message, currWindow)
+	message := fmt.Sprintln(thisGame.players[turnInt].name, lang.Win(), "!")
+	dialog.ShowInformation(lang.Congrats(), message, currWindow)
 	thisGame.players[turnInt].Win()
 	unclickableBtns()
 }
 
 func onBlock() {
-	dialog.ShowConfirm("Block!", "No one wins, restart?", func(b bool) {
+	dialog.ShowConfirm(lang.Block(), lang.BlockMsg(), func(b bool) {
 		if b {
 			restartGame()
 		}
@@ -102,7 +103,7 @@ func getPlayerContent(plNum int) *fyne.Container {
 	icn := newCustomIcon(icnRes, fyne.NewSize(64, 64), nil)
 	entry := widget.NewEntry()
 	entry.Text = "Player" + strconv.Itoa(plNum+1)
-	btn := widget.NewButton("Save name", func() {
+	btn := widget.NewButton(lang.SaveName(), func() {
 		thisGame.players[plNum].name = entry.Text
 		changeTurnText(thisGame.turn)
 	})
@@ -118,11 +119,11 @@ func getPlayerContent(plNum int) *fyne.Container {
 }
 
 func getExitBtn() *fyne.Container {
-	restartBtn := widget.NewButton("Restart", func() {
+	restartBtn := widget.NewButton(lang.Restart(), func() {
 		restartGame()
 	})
-	exitBtn := widget.NewButton("Exit", func() {
-		dialog.ShowConfirm("Exit", "Are you sure you want to exit?", func(b bool) {
+	exitBtn := widget.NewButton(lang.Exit(), func() {
+		dialog.ShowConfirm(lang.Exit(), lang.ExitMsg(), func(b bool) {
 			if b {
 				currWindow.SetContent(GetStartContent())
 			}

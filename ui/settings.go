@@ -29,18 +29,18 @@ func getSettingsContent() (c *fyne.Container) {
 }
 
 func getSettingsTitle() fyne.CanvasObject {
-	t := canvas.NewText("Settings", textColor)
+	t := canvas.NewText(lang.Settings(), textColor)
 	t.TextSize = 32
 	return t
 }
 
 func getSettingsList(themeIsDark bool) fyne.CanvasObject {
-	dt := widget.NewCheck("Dark Theme", func(b bool) {
+	dt := widget.NewCheck(lang.DarkTheme(), func(b bool) {
 		currentFields.dark = b
 	})
 	dt.Checked = themeIsDark
 
-	langTitle := canvas.NewText("Language", textColor)
+	langTitle := canvas.NewText(lang.Language(), textColor)
 	langSelect := widget.NewSelect(languages, func(s string) {
 		for idx, elem := range languages {
 			if elem == s {
@@ -58,10 +58,10 @@ func getSettingsList(themeIsDark bool) fyne.CanvasObject {
 }
 
 func getCanSaveBtns(themeIsDark bool) fyne.CanvasObject {
-	cancelBtn := widget.NewButton("Cancel", func() {
+	cancelBtn := widget.NewButton(lang.Cancel(), func() {
 		currWindow.SetContent(GetStartContent())
 	})
-	saveBtn := widget.NewButton("Save", func() {
+	saveBtn := widget.NewButton(lang.Save(), func() {
 		if currentFields.dark && !themeIsDark {
 			currApp.Settings().SetTheme(theme.DarkTheme())
 		} else if !currentFields.dark && themeIsDark {

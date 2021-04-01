@@ -15,6 +15,7 @@ import (
 var textColor color.Color
 var currApp fyne.App
 var currWindow fyne.Window
+var lang util.Lang
 
 func SetContentFields(w fyne.Window) {
 	currWindow = w
@@ -23,6 +24,7 @@ func SetContentFields(w fyne.Window) {
 
 func GetStartContent() (c *fyne.Container) {
 	textColor = theme.ForegroundColor()
+	lang = util.English{}
 	c = container.New(
 		layout.NewVBoxLayout(),
 		container.NewHBox(getSettingsBtn()),
@@ -45,7 +47,7 @@ func getPlayButton() fyne.CanvasObject {
 	playButton := widget.NewButton("", func() {
 		currWindow.SetContent(getGameContent(3))
 	})
-	text := canvas.NewText("Play", textColor)
+	text := canvas.NewText(lang.Play(), textColor)
 	text.TextSize = 36
 	text.TextStyle = fyne.TextStyle{Bold: true, Italic: true}
 	return container.NewMax(playButton, container.NewCenter(text))
