@@ -1,6 +1,7 @@
 package ui
 
 import (
+	"../util"
 	"errors"
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/canvas"
@@ -50,7 +51,7 @@ func getSettingsList(themeIsDark bool) fyne.CanvasObject {
 		}
 		panic(errors.New("no such language"))
 	})
-	langSelect.Selected = languages[0]
+	langSelect.Selected = languages[currentFields.language]
 	lang := container.New(layout.NewHBoxLayout(), langTitle, langSelect)
 
 	setList := container.NewVBox(dt, lang)
@@ -67,7 +68,14 @@ func getCanSaveBtns(themeIsDark bool) fyne.CanvasObject {
 		} else if !currentFields.dark && themeIsDark {
 			currApp.Settings().SetTheme(theme.LightTheme())
 		}
-		//TODO add language change
+		switch currentFields.language {
+		case 0:
+			lang = util.English{}
+		case 1:
+			lang = util.Russian{}
+		case 2:
+			lang = util.Ukrainian{}
+		}
 		currWindow.SetContent(GetStartContent())
 	})
 	btns := container.New(layout.NewHBoxLayout(),

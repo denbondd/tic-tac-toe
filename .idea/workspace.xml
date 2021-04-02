@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="82d78d3d-82e7-414c-9b89-3b6a23c368be" name="Default Changelist" comment="add game block check">
-      <change afterPath="$PROJECT_DIR$/lang.go" afterDir="false" />
+    <list default="true" id="82d78d3d-82e7-414c-9b89-3b6a23c368be" name="Default Changelist" comment="start making different language support">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/gameUi.go" beforeDir="false" afterPath="$PROJECT_DIR$/ui/gameUi.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/game.go" beforeDir="false" afterPath="$PROJECT_DIR$/ui/game.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/settings.go" beforeDir="false" afterPath="$PROJECT_DIR$/ui/settings.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/start.go" beforeDir="false" afterPath="$PROJECT_DIR$/ui/start.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util/lang.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/lang.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +59,9 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\ITProjects\Go\tic-tac-toe\assets" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\ITProjects\Go\tic-tac-toe\util" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
@@ -102,6 +105,7 @@
     <MESSAGE value="finish basic game logic" />
     <MESSAGE value="add game block check" />
     <MESSAGE value="refactoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactoring" />
+    <MESSAGE value="start making different language support" />
+    <option name="LAST_COMMIT_MESSAGE" value="start making different language support" />
   </component>
 </project>

@@ -20,11 +20,11 @@ var lang util.Lang
 func SetContentFields(w fyne.Window) {
 	currWindow = w
 	currApp = fyne.CurrentApp()
+	lang = util.English{}
 }
 
 func GetStartContent() (c *fyne.Container) {
 	textColor = theme.ForegroundColor()
-	lang = util.English{}
 	c = container.New(
 		layout.NewVBoxLayout(),
 		container.NewHBox(getSettingsBtn()),

@@ -73,11 +73,11 @@ func checkBlock(pl1, pl2 [][]bool) bool {
 func changeTurnText(turn bool) {
 	text := ""
 	if turn {
-		text = thisGame.players[0].name + "'s"
+		text = thisGame.players[0].name
 	} else {
-		text = thisGame.players[1].name + "'s"
+		text = thisGame.players[1].name
 	}
-	thisGame.turnText.Text = text + " turn"
+	thisGame.turnText.Text = text + lang.Turn()
 	thisGame.turnText.Refresh()
 }
 

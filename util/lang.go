@@ -49,7 +49,7 @@ func (_ English) Cancel() string {
 }
 
 func (_ English) Turn() string {
-	return "turn"
+	return "'s turn"
 }
 
 func (_ English) SaveName() string {
@@ -85,121 +85,121 @@ func (_ English) BlockMsg() string {
 }
 
 func (_ Russian) Play() string {
-	panic("implement me")
+	return "Играть"
 }
 
 func (_ Russian) Settings() string {
-	panic("implement me")
+	return "Настройки"
 }
 
 func (_ Russian) DarkTheme() string {
-	panic("implement me")
+	return "Темная тема"
 }
 
 func (_ Russian) Language() string {
-	panic("implement me")
+	return "Язык"
 }
 
 func (_ Russian) Save() string {
-	panic("implement me")
+	return "Сохранить"
 }
 
 func (_ Russian) Cancel() string {
-	panic("implement me")
+	return "Отмена"
 }
 
 func (_ Russian) Turn() string {
-	panic("implement me")
+	return " очередь"
 }
 
 func (_ Russian) SaveName() string {
-	panic("implement me")
+	return "Сохранить имя"
 }
 
 func (_ Russian) Restart() string {
-	panic("implement me")
+	return "Заново"
 }
 
 func (_ Russian) Exit() string {
-	panic("implement me")
+	return "Выход"
 }
 
 func (_ Russian) ExitMsg() string {
-	panic("implement me")
+	return "Вы уверены что хотите выйти?"
 }
 
 func (_ Russian) Congrats() string {
-	panic("implement me")
+	return "Поздравляем"
 }
 
 func (_ Russian) Win() string {
-	panic("implement me")
+	return "выиграл"
 }
 
 func (_ Russian) Block() string {
-	panic("implement me")
+	return "Ничья"
 }
 
 func (_ Russian) BlockMsg() string {
-	panic("implement me")
+	return "Никто не выиграл, начать заново?"
 }
 
 func (_ Ukrainian) Play() string {
-	panic("implement me")
+	return "Грати"
 }
 
 func (_ Ukrainian) Settings() string {
-	panic("implement me")
+	return "Настройки"
 }
 
 func (_ Ukrainian) DarkTheme() string {
-	panic("implement me")
+	return "Темна тема"
 }
 
 func (_ Ukrainian) Language() string {
-	panic("implement me")
+	return "Мова"
 }
 
 func (_ Ukrainian) Save() string {
-	panic("implement me")
+	return "Зберегти"
 }
 
 func (_ Ukrainian) Cancel() string {
-	panic("implement me")
+	return "Скасувати"
 }
 
 func (_ Ukrainian) Turn() string {
-	panic("implement me")
+	return " черга"
 }
 
 func (_ Ukrainian) SaveName() string {
-	panic("implement me")
+	return "Зберегти ім'я"
 }
 
 func (_ Ukrainian) Restart() string {
-	panic("implement me")
+	return "Переграти"
 }
 
 func (_ Ukrainian) Exit() string {
-	panic("implement me")
+	return "Вийти"
 }
 
 func (_ Ukrainian) ExitMsg() string {
-	panic("implement me")
+	return "Ви впевнені що хочете вийти?"
 }
 
 func (_ Ukrainian) Congrats() string {
-	panic("implement me")
+	return "Вітання"
 }
 
 func (_ Ukrainian) Win() string {
-	panic("implement me")
+	return "переміг"
 }
 
 func (_ Ukrainian) Block() string {
-	panic("implement me")
+	return "Нічия"
 }
 
 func (_ Ukrainian) BlockMsg() string {
-	panic("implement me")
+	return "Нікто не переміг, переграти?"
 }
