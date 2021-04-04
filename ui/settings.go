@@ -18,6 +18,7 @@ func getSettingsContent() (c *fyne.Container) {
 	themeIsDark := textColor == currApp.Settings().Theme().Color("foreground", 0)
 	currentFields = &fields{
 		dark: themeIsDark,
+		language: lang.GetLangNum(),
 	}
 	c = container.New(
 		layout.NewVBoxLayout(),

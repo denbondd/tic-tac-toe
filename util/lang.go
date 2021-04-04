@@ -1,6 +1,7 @@
 package util
 
 type Lang interface {
+	GetLangNum() int
 	Play() string
 	Settings() string
 	DarkTheme() string
@@ -23,6 +24,10 @@ type English struct{}
 type Russian struct{}
 
 type Ukrainian struct{}
+
+func (_ English) GetLangNum() int {
+	return 0
+}
 
 func (_ English) Play() string {
 	return "Play"
@@ -84,6 +89,10 @@ func (_ English) BlockMsg() string {
 	return "No one wins, restart?"
 }
 
+func (_ Russian) GetLangNum() int {
+	return 1
+}
+
 func (_ Russian) Play() string {
 	return "Играть"
 }
@@ -142,6 +151,10 @@ func (_ Russian) Block() string {
 
 func (_ Russian) BlockMsg() string {
 	return "Никто не выиграл, начать заново?"
+}
+
+func (_ Ukrainian) GetLangNum() int {
+	return 2
 }
 
 func (_ Ukrainian) Play() string {
