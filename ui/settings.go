@@ -1,7 +1,7 @@
 package ui
 
 import (
-	"../util"
+	"github.com/denbondd/tic-tac-toe/util"
 	"errors"
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/canvas"

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="82d78d3d-82e7-414c-9b89-3b6a23c368be" name="Default Changelist" comment="start making different language support">
+    <list default="true" id="82d78d3d-82e7-414c-9b89-3b6a23c368be" name="Default Changelist" comment="finish language setting">
+      <change afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/game.go" beforeDir="false" afterPath="$PROJECT_DIR$/ui/game.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/settings.go" beforeDir="false" afterPath="$PROJECT_DIR$/ui/settings.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/start.go" beforeDir="false" afterPath="$PROJECT_DIR$/ui/start.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/util/lang.go" beforeDir="false" afterPath="$PROJECT_DIR$/util/lang.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,6 +46,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
+    <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
     <property name="last_opened_file_path" value="$USER_HOME$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -106,6 +107,7 @@
     <MESSAGE value="add game block check" />
     <MESSAGE value="refactoring" />
     <MESSAGE value="start making different language support" />
-    <option name="LAST_COMMIT_MESSAGE" value="start making different language support" />
+    <MESSAGE value="finish language setting" />
+    <option name="LAST_COMMIT_MESSAGE" value="finish language setting" />
   </component>
 </project>

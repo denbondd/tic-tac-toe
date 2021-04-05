@@ -1,7 +1,7 @@
 package main
 
 import (
-	"./ui"
+	"github.com/denbondd/tic-tac-toe/ui"
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
 )
