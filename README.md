@@ -23,10 +23,11 @@ Game with dark theme and Russian lang: </br>
 - Fyne - cross platform GUI in Go. <a href="https://fyne.io">Site</a>, <a href="https://github.com/fyne-io/fyne">GitHub</a>
 
 ## Quick start
-```
+```bash
 git clone https://github.com/denbondd/tic-tac-toe.git
 cd tic-tac-toe
-go run main.go
+make build 
+#OR simmply run: go build .
 ```  
 
 ## License
