@@ -1,6 +1,12 @@
 # Goland files
-.idea
+.idea/
+.vscode/
 
 # Build files
 *.exe
 *.exe~
+*.out
+
+#binary directory
+bin/
+out/
